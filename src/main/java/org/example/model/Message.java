@@ -1,19 +1,14 @@
 package org.example.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import lombok.Value;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-@Value
+
 @Entity
+@Data
+@NoArgsConstructor
 public class Message {
 
     @Id
@@ -23,8 +18,8 @@ public class Message {
     private String content;
     private LocalDateTime timestamp;
 
-    private String mediaType; // "image" or "video" (optional)
-    private String mediaPath; // saved path on local server
+    private String mediaType; // "image" or "video"
+    private String mediaPath; // local storage path
 
     @Enumerated(EnumType.STRING)
     private Emoji emoji;
@@ -32,6 +27,4 @@ public class Message {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chatroom_id")
     private Chatroom chatroom;
-
-
 }
