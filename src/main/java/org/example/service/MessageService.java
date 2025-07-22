@@ -1,6 +1,8 @@
 package org.example.service;
 
 import org.example.dto.MessageResponseDTO;
+import org.example.exception.ChatroomNotFoundException;
+import org.example.exception.MessageNotFoundException;
 import org.example.kafka.MessageProducer;
 import org.example.model.Chatroom;
 import org.example.model.Emoji;
@@ -40,7 +42,7 @@ public class MessageService {
 
     public Message sendMessage(String content, MultipartFile file, Emoji emoji, Long chatroomId) throws IOException {
         Chatroom chatroom = chatroomRepository.findById(chatroomId)
-                .orElseThrow(() -> new RuntimeException("Chatroom not found"));
+                .orElseThrow(() -> new ChatroomNotFoundException(chatroomId));
 
         Message message = new Message();
         message.setContent(content);
@@ -80,7 +82,7 @@ public class MessageService {
     }
     public Message reactToMessage(Long messageId, Emoji emoji) {
         Message message = messageRepository.findById(messageId)
-                .orElseThrow(() -> new RuntimeException("Message not found"));
+                .orElseThrow(() -> new MessageNotFoundException(messageId));
         message.setEmoji(emoji);
         return messageRepository.save(message);
     }
