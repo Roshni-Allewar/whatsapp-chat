@@ -9,6 +9,5 @@ COPY target/whatsapp-1.0.0.jar app.jar
 
 # Expose the port your app runs on
 EXPOSE 8080
-
 # Command to run your app
 ENTRYPOINT ["java", "-jar", "app.jar"]
