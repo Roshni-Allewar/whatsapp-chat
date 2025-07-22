@@ -39,7 +39,7 @@ This is a Spring Boot RESTful API for a chat application. It supports sending me
 
 ```bash
 # Clone the repo
-git clone https://github.com/your-username/chat-app-api.git
+git clone https://github.com/Roshni-Allewar/whatsapp-chat.git
 cd chat-app-api
 
 # Build and run
