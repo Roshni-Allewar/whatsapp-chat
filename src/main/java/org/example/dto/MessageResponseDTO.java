@@ -1,10 +1,11 @@
 package org.example.dto;
 
+import lombok.Getter;
 import org.example.model.Emoji;
 import org.example.model.Message;
 
 import java.time.LocalDateTime;
-
+@Getter
 public class MessageResponseDTO {
 
     private Long id;

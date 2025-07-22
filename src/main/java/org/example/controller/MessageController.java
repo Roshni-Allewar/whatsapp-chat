@@ -26,11 +26,10 @@ public class MessageController {
     public MessageController(MessageService messageService) {
         this.messageService = messageService;
     }
-
-    @Operation(summary = "Send a message with optional emoji and attachment")
+    @Operation
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<MessageResponseDTO> sendMessage(
-            @RequestPart("content") String content,
+            @RequestParam("content") String content,
             @RequestPart(value = "attachment", required = false) MultipartFile file,
             @RequestParam Emoji emoji,
             @RequestParam Long chatroomId) {
@@ -39,6 +38,7 @@ public class MessageController {
             Message message = messageService.sendMessage(content, file, emoji, chatroomId);
             return ResponseEntity.ok(new MessageResponseDTO(message));
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.badRequest().build();
         }
     }
@@ -53,4 +53,17 @@ public class MessageController {
         Page<MessageResponseDTO> messages = messageService.getMessagesByChatroom(chatroomId, page, size);
         return ResponseEntity.ok(messages);
     }
+    @Operation(summary = "React to a message with an emoji")
+    @PostMapping("/{messageId}/react")
+    public ResponseEntity<MessageResponseDTO> reactToMessage(
+            @PathVariable Long messageId,
+            @RequestParam Emoji emoji) {
+        try {
+            Message updated = messageService.reactToMessage(messageId, emoji);
+            return ResponseEntity.ok(new MessageResponseDTO(updated));
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

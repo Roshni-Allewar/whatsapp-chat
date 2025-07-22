@@ -78,6 +78,13 @@ public class MessageService {
 
         return saved;
     }
+    public Message reactToMessage(Long messageId, Emoji emoji) {
+        Message message = messageRepository.findById(messageId)
+                .orElseThrow(() -> new RuntimeException("Message not found"));
+        message.setEmoji(emoji);
+        return messageRepository.save(message);
+    }
+
 
     public Page<MessageResponseDTO> getMessagesByChatroom(Long chatroomId, int page, int size) {
         Page<Message> messages = messageRepository.findByChatroomId(chatroomId, PageRequest.of(page, size));

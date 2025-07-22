@@ -1,7 +1,8 @@
 package org.example.dto;
 
+import lombok.Getter;
 import org.example.model.Chatroom;
-
+@Getter
 public class ChatroomResponseDTO {
     private Long id;
     private String name;
