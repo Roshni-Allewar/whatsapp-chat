@@ -35,8 +35,9 @@ public class ChatroomController {
 
     @Operation(summary = "List all chatrooms")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<ChatroomResponseDTO>> listChatrooms() {
-        List<ChatroomResponseDTO> chatrooms = chatroomService.listChatrooms();
+    public ResponseEntity<List<ChatroomResponseDTO>> listChatrooms(@RequestParam(defaultValue = "0") int page,
+                                                                   @RequestParam(defaultValue = "10") int size) {
+        List<ChatroomResponseDTO> chatrooms = chatroomService.listChatrooms(page,size);
         return ResponseEntity.ok(chatrooms);
     }
 

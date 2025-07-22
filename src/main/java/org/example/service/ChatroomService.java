@@ -17,7 +17,7 @@ public class ChatroomService {
         this.chatroomRepository = chatroomRepository;
     }
 
-    public List<ChatroomResponseDTO> listChatrooms() {
+    public List<ChatroomResponseDTO> listChatrooms(int page, int size) {
         return chatroomRepository.findAll()
                 .stream()
                 .map(ChatroomResponseDTO::new)

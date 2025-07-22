@@ -25,10 +25,10 @@ import java.util.UUID;
 public class MessageService {
 
     @Value("${storage.image-dir}")
-    private String imageDir;
+    String imageDir;
 
     @Value("${storage.video-dir}")
-    private String videoDir;
+    String videoDir;
 
     private final MessageRepository messageRepository;
     private final ChatroomRepository chatroomRepository;
