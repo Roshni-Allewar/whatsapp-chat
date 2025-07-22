@@ -1,6 +1,7 @@
 # 💬 Chat Application API
 # Check the master branch
-This is a Spring Boot RESTful API for a chat application. It supports sending messages, attaching media files, emoji reactions, and Kafka-based message streaming. The app is documented with Swagger UI.
+
+This is a Spring Boot RESTful API for a Whatsapp like chat application. It supports sending messages, attaching media files, emoji reactions, and Kafka-based message streaming. The app is documented with Swagger UI.
 ---
 
 ## 🚀 Features
